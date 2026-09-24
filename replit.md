@@ -1,12 +1,15 @@
-# [Project name]
+# NBSRAC Conference Website
 
-_Replace the heading above with the project's name, and this line with one sentence describing what this app does for users._
+A standalone, responsive conference website for an NBSRAC Academic Society event. Event details are intentionally editable placeholders until confirmed.
 
 ## Run & Operate
 
 - `pnpm --filter @workspace/api-server run dev` — run the API server (port 5000)
+- `pnpm --filter @workspace/nbsrac-conference run dev` — run the conference site
+- `pnpm --filter @workspace/nbsrac-conference run typecheck` — typecheck the conference site
 - `pnpm run typecheck` — full typecheck across all packages
 - `pnpm run build` — typecheck + build all packages
+- The root `vercel.json` builds the conference site as a static Vercel deployment.
 - `pnpm --filter @workspace/api-spec run codegen` — regenerate API hooks and Zod schemas from the OpenAPI spec
 - `pnpm --filter @workspace/db run push` — push DB schema changes (dev only)
 - Required env: `DATABASE_URL` — Postgres connection string
@@ -22,15 +25,20 @@ _Replace the heading above with the project's name, and this line with one sente
 
 ## Where things live
 
-_Populate as you build — short repo map plus pointers to the source-of-truth file for DB schema, API contracts, theme files, etc._
+- `artifacts/nbsrac-conference/src/App.tsx` — single-page conference site and interactions.
+- `artifacts/nbsrac-conference/src/data/conference.ts` — editable conference and society content source.
+- `artifacts/nbsrac-conference/src/index.css` — NBSRAC-inspired colors, typography, accessibility and responsive styles.
+- `vercel.json` — static Vercel build and SPA rewrite for this site.
 
 ## Architecture decisions
 
-_Populate as you build — non-obvious choices a reader couldn't infer from the code (3-5 bullets)._
+- The conference site is a static React/Vite app; it does not require the shared API or database.
+- Registration and contact forms validate in the browser only and do not send or store entered information.
+- Unknown conference details remain visibly marked as unannounced rather than being invented.
 
 ## Product
 
-_Describe the high-level user-facing capabilities of this app once they exist._
+A one-page academic conference site with calls for papers, speaker and schedule sections, registration interest, venue information, committee details, sponsor tiers, FAQ and contact links.
 
 ## User preferences
 

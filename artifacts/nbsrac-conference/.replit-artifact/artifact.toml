@@ -1,0 +1,28 @@
+kind = "web"
+previewPath = "/"
+title = "NBSRAC Conference Website"
+description = "A standalone, responsive conference website for an NBSRAC Academic Society event, with editable event content, paper submission information, schedules, registration placeholders, venue details, FAQs, and society contact links."
+version = "1.0.0"
+id = "artifacts/nbsrac-conference"
+router = "path"
+
+[[services]]
+name = "web"
+paths = [ "/" ]
+localPort = 21766
+
+[services.development]
+run = "pnpm --filter @workspace/nbsrac-conference run dev"
+
+[services.production]
+build = [ "pnpm", "--filter", "@workspace/nbsrac-conference", "run", "build" ]
+serve = "static"
+publicDir = "artifacts/nbsrac-conference/dist/public"
+
+[[services.production.rewrites]]
+from = "/*"
+to = "/index.html"
+
+[services.env]
+PORT = "21766"
+BASE_PATH = "/"

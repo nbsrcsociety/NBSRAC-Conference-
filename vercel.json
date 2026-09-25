@@ -1,5 +1,10 @@
 {
-  "buildCommand": "PORT=5173 BASE_PATH=/ pnpm --filter @workspace/nbsrac-conference run build",
-  "outputDirectory": "artifacts/nbsrac-conference/dist/public",
-  "rewrites": [{ "source": "/(.*)", "destination": "/index.html" }]
+  "buildCommand": "PORT=5173 BASE_PATH=/ pnpm run build",
+  "outputDirectory": "dist/public",
+  "rewrites": [
+    {
+      "source": "/(.*)",
+      "destination": "/index.html"
+    }
+  ]
 }
